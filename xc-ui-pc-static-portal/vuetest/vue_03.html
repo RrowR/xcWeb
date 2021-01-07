@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue.js的测试程序</title>
+</head>
+<body>
+<div id="app">
+    <!--相当于一个MVVM的view视图-->
+    <ul>
+        <li v-for="(item,index) in list" :key="index" v-if="index % 2 == 0">{{index}}-{{item}}</li>
+        <li v-for="(value,key) in user">{{key}}--{{value}}</li>       <!--注意：这里不需要使用取对象内的属性的方法，value.uname这种写法是错误的-->
+        <li v-for="(item,key) in userlist">
+            <div v-if="item.user.uname=='镜华'" style="background: #3a8ee6">{{key}}---{{item.user.uname}}---{{item.user.age}}</div>
+            <div v-else-if="item.user.uname=='美美'" style="background: pink">{{key}}---{{item.user.uname}}---{{item.user.age}}</div>
+            <div v-else="" style="background: red">{{key}}---{{item.user.uname}}---{{item.user.age}}</div>
+        </li>
+    </ul>
+</div>
+</body>
+<script src="vue.min.js"></script>
+<script>
+    //编写MVVM中的Model部分以及(ViewModel)部分
+    var VM = new Vue({
+        el: '#app',     //vm接管了app区域的管理
+        data:{          //model数据
+            list:[1,2,3,4,5],
+            user:{uname:'hxd',age:10},
+            userlist:[
+                {user:{uname:'镜华',age:12}},
+                {user:{uname:'美美',age:10}},
+                {user:{uname:'咕噜灵波',age:16}},
+            ]
+        }
+    });
+</script>
+</html>

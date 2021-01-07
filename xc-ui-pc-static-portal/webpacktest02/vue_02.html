@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue.js的测试程序</title>
+</head>
+<body>
+<div id="app">
+    <a v-bind:href='url'>
+    <span v-text="name"></span>
+    </a>
+
+    <br>
+    <input type="text" v-model="num1" placeholder="请输入第一个值"/> +
+    <input type="text" v-model="num2" placeholder="请输入第二个值"/>
+    <!--插值表达式-->
+    <!--<span v-text="Number.parseInt(num1)+Number.parseInt(num2)"></span>-->
+    <span v-text=result></span>
+    <button v-on:click="change">计算</button>
+    <div v-bind:style="{ fontSize: size + 'px'}">Vue中的v-bind学习</div>
+    <img :src="imageSrc">
+</div>
+</body>
+</html>

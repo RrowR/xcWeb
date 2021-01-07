@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue.js的测试程序</title>
+</head>
+<script src="vue.min.js"></script>
+<body>
+<!--实现在body区域显示一个咚咚咚这个名称-->
+<div id="app">
+    <!--相当于一个视图部分-->
+    {{name}}
+
+</div>
+<script>
+    var VM = new Vue({
+        el: '#app',
+        data:{
+            name:'咚咚咚'
+        }
+    });
+</script>
+</body>
+</html>

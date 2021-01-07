@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue.js的测试程序</title>
+</head>
+<body>
+<div id="app">
+    <a v-bind:href='url'>
+    <span v-text="name"></span>
+    </a>
+
+    <br>
+    <input type="text" v-model="num1" placeholder="请输入第一个值"/> +
+    <input type="text" v-model="num2" placeholder="请输入第二个值"/>
+    <!--插值表达式-->
+    <!--<span v-text="Number.parseInt(num1)+Number.parseInt(num2)"></span>-->
+    <span v-text=result></span>
+    <button v-on:click="change">计算</button>
+    <div v-bind:style="{ fontSize: size + 'px'}">Vue中的v-bind学习</div>
+    <img :src="imageSrc">
+</div>
+</body>
+<script src="vue.min.js"></script>
+<script>
+    //编写MVVM中的Model部分以及(ViewModel)部分
+    var VM = new Vue({
+        el: '#app',
+        data:{
+            name:'咚咚咚',
+            num1:null,
+            num2:null,
+            result:null,
+            url:"https://www.baidu.com",
+            size:33,
+            imageSrc:"pic.jpg",
+
+        },
+        methods:{
+            change:function () {
+                this.result = Number.parseInt(this.num1) + Number.parseInt(this.num2);
+                // alert(this.result);
+            }
+        }
+    });
+</script>
+</html>
