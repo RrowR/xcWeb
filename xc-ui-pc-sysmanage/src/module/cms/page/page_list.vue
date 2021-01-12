@@ -45,7 +45,10 @@
           this.total = res.queryResult.total;
         });
       },
-      pageChange:function () {
+      pageChange:function (page) {
+        // alert(page);
+        //调用query方法
+        this.params.page = page;
         this.query()
       }
     },
@@ -53,29 +56,10 @@
       return {
         total:50,
         params:{
-          page:2,
-          size:5,
+          page:1,
+          size:10,
         },
-        list: [
-          {
-            "siteId": "5a751fab6abb5044e0d19ea1",
-            "pageId": "5a754adf6abb500ad05688d9",
-            "pageName": "index.html",
-            "pageAliase": "首页",
-            "pageWebPath": "/index.html",
-            "pageParameter": null,
-            "pagePhysicalPath": "F:\\develop\\xc_portal_static\\",
-            "pageType": "0",
-            "pageTemplate": null,
-            "pageHtml": null,
-            "pageStatus": null,
-            "pageCreateTime": "2018-02-03T05:37:53.256+0000",
-            "templateId": "5a962b52b00ffc514038faf7",
-            "pageParams": null,
-            "htmlFileId": "5a7c1c54d019f14d90a1fb23",
-            "dataUrl": null
-          },
-        ]
+        list: [],
       }
     }
   }
