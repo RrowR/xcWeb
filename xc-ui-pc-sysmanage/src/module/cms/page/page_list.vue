@@ -1,7 +1,24 @@
 <template>
   <!--静态页面的编写,即view部分-->
   <div>
-    <el-button type="success" plain  v-on:click="query" style="float: right">成功按钮</el-button>
+    <el-form :model="params">
+      <el-select v-model="params.siteId" placeholder="请选择站点">
+        <el-option
+          v-for="item in siteList"
+          :key="item.siteId"
+          :label="item.siteName"
+          :value="item.siteId">
+        </el-option>
+      </el-select>
+      页面别名:<el-input v-model="params.pageAliase" style="width: 100px"></el-input>
+        <el-button type="success" plain  v-on:click="query">查询</el-button>
+
+      <router-link :to="{path:'/cms/page/add'}">
+      <el-button type="primary" size="small">新增页面</el-button>
+      </router-link>
+
+    </el-form>
+
     <el-table
       :data="list"
       stripe
@@ -18,7 +35,7 @@
       </el-table-column>
       <el-table-column prop="pagePhysicalPath" label="物理路径" width="250">
       </el-table-column>
-      <el-table-column prop="pageCreateTime" label="创建时间" width="180">
+      <el-table-column prop="pageCreateTime" label="创建时间" width="">
       </el-table-column>
     </el-table>
     <el-pagination
@@ -40,7 +57,7 @@
       //查询
       query:function () {
         // alert("查询")
-        cmsApi.page_list(this.params.page,this.params.size).then((res)=>{
+        cmsApi.page_list(this.params.page,this.params.size,this.params).then((res)=>{
           this.list = res.queryResult.list;
           this.total = res.queryResult.total;
         });
@@ -54,13 +71,31 @@
     },
     data() {
       return {
+        siteList:[],  //站点列表,这是一个json数据，一定要注意下面的钩子函数起步是用的[]而不是{}
         total:50,
         params:{
           page:1,
-          size:10,
+          size:5,
+          pageAliase:"",
+          siteId:"",
         },
         list: [],
       }
+    },
+    created() {
+      //钩子方法，在页面渲染完成之后调用一次方法
+      this.query();
+      this.siteList =
+      [
+        {
+        siteId: "5a751fab6abb5044e0d19ea1",
+        siteName: "门户主站",
+        },
+        {
+          siteId: "first",
+          siteName: "first",
+        },
+      ]
     }
   }
 </script>
