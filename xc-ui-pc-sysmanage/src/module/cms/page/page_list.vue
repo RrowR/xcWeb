@@ -13,8 +13,12 @@
       页面别名:<el-input v-model="params.pageAliase" style="width: 100px"></el-input>
         <el-button type="success" plain  v-on:click="query">查询</el-button>
 
-      <router-link :to="{path:'/cms/page/add'}">
-      <el-button type="primary" size="small">新增页面</el-button>
+      <!--在这个router-link的:to方法中，可以在{}中再通过一个逗号来写query方法，当点击这个按钮的时候，这个query方法就会将这个值赋给page和siteId，那么路由到的这个页面就可以得到这2个参数了-->
+      <router-link :to="{path:'/cms/page/add',query:{
+        page:this.params.page,
+        siteId:this.params.siteId
+      }}" >
+        <el-button type="primary" size="small">新增页面</el-button>
       </router-link>
 
     </el-form>
@@ -83,6 +87,11 @@
       }
     },
     created() {
+      this.params.page = Number.parseInt(this.$route.query.page || 1);      //注意这里的page是从route里面取的，而不是我直接写的page，会取不到的,然后注意这里的page是整形，route里是字符串型
+      this.params.siteId = this.$route.query.siteId || "";                               //siteId本身就是一个字符串
+      this.query()
+    },
+    mounted() {
       //钩子方法，在页面渲染完成之后调用一次方法
       this.query();
       this.siteList =
