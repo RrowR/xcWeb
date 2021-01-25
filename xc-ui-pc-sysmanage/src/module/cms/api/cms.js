@@ -11,6 +11,8 @@ export const page_list = (page,size,params) => {
   return http.requestQuickGet(apiUrl+"/cms/page/list/" + page + "/" + size + "?" + queryString);
 }
 
-
+export const page_add = params => {
+  return http.requestPost(apiUrl+"/cms/page/add",params);   //这里只需要使用逗号，填写参数就行了，具体需要看这个post需要的参数是啥
+}
 
 

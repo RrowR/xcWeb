@@ -56,7 +56,18 @@
       addSubmit: function () {
         this.$refs["pageForm"].validate((valid) => {
           if (valid) {
-            alert('提交成功!');
+            this.$confirm('您确认提交吗?', '提示', {}).then(() => {
+              //调用添加方法的接口
+              cmsApi.page_add(this.pageForm).then(res=>{
+                if(res.success){
+                  this.$message.success("操作成功");
+                  //清空表单
+                  this.$refs['pageForm'].resetFields();
+                }else{
+                  this.$message.error("提交失败");
+                }
+              });
+            })
           }
         });
       },
@@ -69,7 +80,7 @@
             siteId: this.$route.query.siteId,
           }
         });
-      }
+      },
     },
     data() {
       return {
