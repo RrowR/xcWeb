@@ -20,6 +20,10 @@ export const page_get = id => {
 }
 
 export const page_edit = (id,params) => {
-  return null;
+  return http.requestPut(apiUrl+"/cms/page/edit/"+id,params);
+}
+
+export const page_del = id => {
+  return http.requestDelete(apiUrl+"/cms/page/delete/"+id);
 }
 

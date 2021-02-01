@@ -45,6 +45,7 @@
       <el-table-column label="操作" width="80">
         <template slot-scope="page">
           <el-button size="small" type="text" @click="edit(page.row.pageId)">编辑</el-button>
+          <el-button size="small" type="text" @click="del(page.row.pageId)">删除</el-button>
         </template>
       </el-table-column>
 
@@ -81,6 +82,18 @@
       },
       edit:function (pageId) {
         this.$router.push("/cms/page/edit/"+pageId);
+      },
+      del:function (pageId) {
+        this.$confirm('确认删除吗？', '提示', {}).then(() => {
+          cmsApi.page_del(pageId).then(res=>{
+            if(res.success){
+              this.$message.success("删除成功");
+              this.query();
+            }else{
+              this.$message.error("删除失败");
+            }
+          })
+        })
       }
     },
     data() {
