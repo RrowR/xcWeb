@@ -53,7 +53,7 @@
     </el-form>
     <div slot="footer" class="dialog-footer">
       <el-button @click="go_back">返回</el-button>
-      <el-button type="primary" @click.native="editSubmit" :loading="addLoading">提交</el-button>
+      <el-button type="primary" @click.native="editSubmiteditSubmit" :loading="addLoading">提交</el-button>
     </div>
   </div>
 </template>
