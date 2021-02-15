@@ -60,9 +60,11 @@
               //调用添加方法的接口
               cmsApi.page_add(this.pageForm).then(res=>{
                 if(res.success){
-                  this.$message.success("操作成功");
+                  this.$message.success("提交成功");
                   //清空表单
                   this.$refs['pageForm'].resetFields();
+                }else if(res.message){
+                  this.$message.error(res.message);
                 }else{
                   this.$message.error("提交失败");
                 }
